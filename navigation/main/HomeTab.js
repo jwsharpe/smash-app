@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Text, View } from "react-native";
+import { AsyncStorage, TouchableOpacity, Text, View } from "react-native";
 import ThreadContainer from "../../screens/main/Main";
 import styles from "../../assets/styles";
 import { createMaterialTopTabNavigator } from "react-navigation";
@@ -8,7 +8,7 @@ const PUBLIC_MAIN = () => <ThreadContainer hi={"public"} />;
 const FRIENDS_MAIN = () => <ThreadContainer hi={"friends"} />;
 const ME_MAIN = () => <ThreadContainer hi={"me"} />;
 
-const TopTabNavigator = createMaterialTopTabNavigator(
+TopTabNavigator = createMaterialTopTabNavigator(
   {
     PUBLIC: PUBLIC_MAIN,
     FRIENDS: FRIENDS_MAIN,
@@ -34,13 +34,27 @@ export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <TopTabNavigator navigation={this.props.navigation} />
+        <TopTabNavigator
+          signOut={() => this._signOutAsync}
+          navigation={this.props.navigation}
+        />
         <TouchableOpacity onPress={this._navigateToSearch} style={styles.fab}>
           <Text style={styles.fabText}>S</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={this._signOutAsync}
+          style={{ ...styles.fab, left: 16 }}
+        >
+          <Text style={styles.fabText}>S.O.</Text>
         </TouchableOpacity>
       </View>
     );
   }
+
+  _signOutAsync = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate("AuthLoading");
+  };
 
   _navigateToSearch = () => {
     this.props.navigation.navigate("SEARCH");

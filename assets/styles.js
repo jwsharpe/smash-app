@@ -36,7 +36,8 @@ export const styles = StyleSheet.create({
   tabButton: {
     backgroundColor: "#455A64",
     padding: 20,
-    flex: 1
+    flex: 1,
+    maxHeight: 10
   },
   tabButtonText: {
     color: "white",

@@ -9,51 +9,6 @@ const data = [
   },
   {
     title: "Me"
-  },
-  {
-    title: "Public"
-  },
-  {
-    title: "Friends"
-  },
-  {
-    title: "Me"
-  },
-  {
-    title: "Public"
-  },
-  {
-    title: "Friends"
-  },
-  {
-    title: "Me"
-  },
-  {
-    title: "Public"
-  },
-  {
-    title: "Friends"
-  },
-  {
-    title: "Me"
-  },
-  {
-    title: "Public"
-  },
-  {
-    title: "Friends"
-  },
-  {
-    title: "Me"
-  },
-  {
-    title: "Public"
-  },
-  {
-    title: "Friends"
-  },
-  {
-    title: "Me"
   }
 ];
 

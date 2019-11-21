@@ -11,12 +11,9 @@ import { connect } from "react-redux";
 import styles from "../../assets/styles";
 class ThreadContainer extends Component {
   render() {
-    console.log(this.props.hi);
+    console.log(this.props);
     return (
       <>
-        <TouchableOpacity style={styles.tabButton} onPress={this._signOutAsync}>
-          <Text style={styles.tabButtonText}>SIGN OUT</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.tabButton} onPress={this._showModal}>
           <Text style={styles.tabButtonText}>OPEN DIALOG</Text>
         </TouchableOpacity>
@@ -50,11 +47,6 @@ class ThreadContainer extends Component {
       ],
       { cancelable: false }
     );
-  };
-
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate("AuthLoading");
   };
 }
 
