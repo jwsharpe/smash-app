@@ -30,7 +30,8 @@ const logins = [
 const INITIAL_STATE = {
   currentUser: null,
   data: data,
-  logins: logins
+  logins: logins,
+  navigation: {}
 };
 
 const reducer = (state = INITIAL_STATE, { type, payload }) => {

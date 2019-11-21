@@ -4,15 +4,15 @@ import ThreadContainer from "../../screens/main/Main";
 import styles from "../../assets/styles";
 import { createMaterialTopTabNavigator } from "react-navigation";
 
-const PUBLIC_MAIN = () => <ThreadContainer hi={"public"} />;
-const FRIENDS_MAIN = () => <ThreadContainer hi={"friends"} />;
-const ME_MAIN = () => <ThreadContainer hi={"me"} />;
+const PublicScreen = () => <ThreadContainer hi={"public"} />;
+const FriendsScreen = () => <ThreadContainer hi={"friends"} />;
+const MeScreen = () => <ThreadContainer hi={"me"} />;
 
 TopTabNavigator = createMaterialTopTabNavigator(
   {
-    PUBLIC: PUBLIC_MAIN,
-    FRIENDS: FRIENDS_MAIN,
-    ME: ME_MAIN
+    PUBLIC: PublicScreen,
+    FRIENDS: FriendsScreen,
+    ME: MeScreen
   },
   {
     tabBarOptions: {
@@ -35,7 +35,7 @@ export default class Home extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <TopTabNavigator
-          signOut={() => this._signOutAsync}
+          navigateToProfile={() => this._navigateToProfile}
           navigation={this.props.navigation}
         />
         <TouchableOpacity onPress={this._navigateToSearch} style={styles.fab}>
@@ -58,5 +58,9 @@ export default class Home extends React.Component {
 
   _navigateToSearch = () => {
     this.props.navigation.navigate("SEARCH");
+  };
+
+  _navigateToProfile = () => {
+    this.props.navigation.navigate("PROFILE");
   };
 }

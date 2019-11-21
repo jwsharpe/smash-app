@@ -1,12 +1,14 @@
 import styles from "../../assets/styles";
 import { createStackNavigator } from "react-navigation";
-import Home from "./HomeTab";
-import Search from "../../screens/main/Search";
+import HomeTab from "./HomeTab";
+import SearchScreen from "../../screens/main/Search";
+import ProfileScreen from "../../screens/main/Profile";
 
 export const MainStack = createStackNavigator(
   {
-    HOME: Home,
-    SEARCH: Search
+    HOME: HomeTab,
+    SEARCH: SearchScreen,
+    PROFILE: ProfileScreen
   },
 
   {

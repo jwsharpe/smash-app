@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import {
-  FlatList,
-  Text,
-  Alert,
-  AsyncStorage,
-  TouchableOpacity
-} from "react-native";
+import { FlatList, Text, Alert, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
+import ProfileItem from "../../components/ProfileItem";
+import { withNavigation } from "react-navigation";
 
 import styles from "../../assets/styles";
 class ThreadContainer extends Component {
   render() {
-    console.log(this.props);
     return (
       <>
         <TouchableOpacity style={styles.tabButton} onPress={this._showModal}>
@@ -21,8 +16,8 @@ class ThreadContainer extends Component {
         <FlatList
           data={this.props.data}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <Text style={styles.item}>{item.title}</Text>
+          renderItem={({ item, index }) => (
+            <ProfileItem id={index} style={styles.item} />
           )}
         />
       </>
@@ -57,4 +52,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(ThreadContainer);
+export default withNavigation(connect(mapStateToProps)(ThreadContainer));
