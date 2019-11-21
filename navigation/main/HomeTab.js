@@ -1,11 +1,8 @@
 import React from "react";
 import { TouchableOpacity, Text, View } from "react-native";
-import ThreadContainer from "../screens/home/Main";
-import styles from "../assets/styles";
-import {
-  createMaterialTopTabNavigator,
-  createStackNavigator
-} from "react-navigation";
+import ThreadContainer from "../../screens/main/Main";
+import styles from "../../assets/styles";
+import { createMaterialTopTabNavigator } from "react-navigation";
 
 const PUBLIC_MAIN = () => <ThreadContainer hi={"public"} />;
 const FRIENDS_MAIN = () => <ThreadContainer hi={"friends"} />;
@@ -31,42 +28,21 @@ const TopTabNavigator = createMaterialTopTabNavigator(
   }
 );
 
-class NAV extends React.Component {
+export default class Home extends React.Component {
   static router = TopTabNavigator.router;
 
   render() {
     return (
       <View style={styles.mainContainer}>
         <TopTabNavigator navigation={this.props.navigation} />
-        <TouchableOpacity style={styles.fab}>
+        <TouchableOpacity onPress={this._navigateToSearch} style={styles.fab}>
           <Text style={styles.fabText}>S</Text>
         </TouchableOpacity>
       </View>
     );
   }
+
+  _navigateToSearch = () => {
+    this.props.navigation.navigate("SEARCH");
+  };
 }
-
-export const AppTab = createStackNavigator(
-  {
-    NAV: NAV
-  },
-
-  {
-    defaultNavigationOptions: {
-      headerTitle: "SmashLO",
-      headerStyle: {
-        backgroundColor: "#607D8B",
-        elevation: 0,
-        height: 12,
-        paddingBottom: 20
-      },
-      headerTitleStyle: {
-        fontSize: 14,
-        color: "white",
-        fontWeight: "bold"
-      }
-    }
-  }
-);
-
-export default AppTab;

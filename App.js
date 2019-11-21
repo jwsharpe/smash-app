@@ -1,7 +1,7 @@
 import { AppLoading } from "expo";
 import React, { useState } from "react";
-import { StatusBar, View } from "react-native";
-import AppNavigator from "./navigation/AppNavigator";
+import { View } from "react-native";
+import AppSwitchNavigator from "./navigation/AppSwitchNavigator";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./redux/reducer";
@@ -24,7 +24,7 @@ export default function App(props) {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <AppNavigator />
+          <AppSwitchNavigator />
         </View>
       </Provider>
     );

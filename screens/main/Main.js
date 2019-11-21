@@ -14,12 +14,12 @@ class ThreadContainer extends Component {
     console.log(this.props.hi);
     return (
       <>
-        {/* <TouchableOpacity style={styles.tabButton} onPress={this._signOutAsync}>
+        <TouchableOpacity style={styles.tabButton} onPress={this._signOutAsync}>
           <Text style={styles.tabButtonText}>SIGN OUT</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabButton} onPress={this._showModal}>
           <Text style={styles.tabButtonText}>OPEN DIALOG</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         <FlatList
           data={this.props.data}
@@ -52,13 +52,9 @@ class ThreadContainer extends Component {
     );
   };
 
-  _showMoreApp = () => {
-    this.props.navigation.navigate("Main2EB");
-  };
-
   _signOutAsync = async () => {
     await AsyncStorage.clear();
-    this.props.navigation.navigate("Auth");
+    this.props.navigation.navigate("AuthLoading");
   };
 }
 
