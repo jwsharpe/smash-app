@@ -1,18 +1,28 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import styles from "../../assets/styles";
+import { View, FlatList } from "react-native";
 import { connect } from "react-redux";
+import ProfileItem from "../../components/ProfileItem";
 
 export class Search extends Component {
   render() {
     return (
       <View>
-        <Text> search pls </Text>
+        <FlatList
+          data={this.props.users}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <ProfileItem id={item.id} profile={item} style={styles.item} />
+          )}
+        />
       </View>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  users: state.main.users
+});
 
 const mapDispatchToProps = {};
 

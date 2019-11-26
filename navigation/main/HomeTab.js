@@ -3,15 +3,16 @@ import { AsyncStorage, TouchableOpacity, Text, View } from "react-native";
 import ThreadContainer from "../../screens/main/Main";
 import styles from "../../assets/styles";
 import { createMaterialTopTabNavigator } from "react-navigation";
+import { connect } from "react-redux";
 
-const PublicScreen = () => <ThreadContainer hi={"public"} />;
-const FriendsScreen = () => <ThreadContainer hi={"friends"} />;
-const MeScreen = () => <ThreadContainer hi={"me"} />;
+const PublicScreen = () => <ThreadContainer id="public" />;
+// const FriendsScreen = () => <ThreadContainer hi={"friends"} />;
+const MeScreen = () => <ThreadContainer id="me" />;
 
 TopTabNavigator = createMaterialTopTabNavigator(
   {
     PUBLIC: PublicScreen,
-    FRIENDS: FriendsScreen,
+    // FRIENDS: FriendsScreen,
     ME: MeScreen
   },
   {
@@ -28,7 +29,7 @@ TopTabNavigator = createMaterialTopTabNavigator(
   }
 );
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   static router = TopTabNavigator.router;
 
   render() {
@@ -43,9 +44,9 @@ export default class Home extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={this._signOutAsync}
-          style={{ ...styles.fab, left: 16 }}
+          style={{ ...styles.signOut }}
         >
-          <Text style={styles.fabText}>S.O.</Text>
+          <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
       </View>
     );
@@ -64,3 +65,11 @@ export default class Home extends React.Component {
     this.props.navigation.navigate("PROFILE");
   };
 }
+
+const mapStateToProps = state => ({
+  matches: state.main.matches
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

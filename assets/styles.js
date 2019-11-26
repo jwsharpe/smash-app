@@ -14,7 +14,9 @@ export const styles = StyleSheet.create({
     color: "#212121",
     borderBottomWidth: 1,
     borderBottomColor: "#BDBDBD",
-    height: 80
+    height: 80,
+    textAlign: "center",
+    textAlignVertical: "center"
   },
 
   fab: {
@@ -24,7 +26,7 @@ export const styles = StyleSheet.create({
     height: 56,
     alignItems: "center",
     borderRadius: 50,
-    backgroundColor: "black",
+    backgroundColor: "#448AFF",
     justifyContent: "center",
     right: 16,
     bottom: 16
@@ -42,6 +44,24 @@ export const styles = StyleSheet.create({
   tabButtonText: {
     color: "white",
     fontWeight: "bold",
+    textAlign: "center"
+  },
+  signOut: {
+    position: "absolute",
+    width: 86,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#448AFF",
+    bottom: 30,
+    borderRadius: 15,
+    elevation: 5,
+    right: 100
+  },
+  signOutText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 12,
     textAlign: "center"
   }
 });

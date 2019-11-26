@@ -6,12 +6,18 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./redux/reducer";
 import styles from "./assets/styles";
+import { setUsers, setMatches } from "./redux/actions";
+import fetch from "./helper/fetchWithTimeout";
+
+import ActionCable from "react-native-actioncable";
+import ActionCableProvider from "react-actioncable-provider";
+
+const cable = ActionCable.createConsumer("ws://10.0.2.2:3000/cable");
 
 const store = createStore(reducer);
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading
@@ -23,9 +29,11 @@ export default function App(props) {
   } else {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <AppSwitchNavigator />
-        </View>
+        <ActionCableProvider cable={cable}>
+          <View style={styles.container}>
+            <AppSwitchNavigator />
+          </View>
+        </ActionCableProvider>
       </Provider>
     );
   }
@@ -33,6 +41,14 @@ export default function App(props) {
 
 async function loadResourcesAsync() {
   await Promise.all([
+    fetch("http://10.0.2.2:3000/users", null, 1000)
+      .then(response => response.json())
+      .then(users => store.dispatch(setUsers(users))),
+
+    fetch("http://10.0.2.2:3000/matches", null, 1000)
+      .then(response => response.json())
+      .then(matches => store.dispatch(setMatches(matches)))
+
     // Asset.loadAsync([
     //   require("./assets/images/robot-dev.png"),
     //   require("./assets/images/robot-prod.png")

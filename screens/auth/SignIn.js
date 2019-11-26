@@ -42,8 +42,8 @@ class SignIn extends React.Component {
     const value = this._form.getValue(); // use that ref to get the form value
 
     if (value) {
-      item = this.props.logins.find(item => item.email === value.email);
-      if (item) await AsyncStorage.setItem("userToken", item.id);
+      item = this.props.users.find(item => item.email === value.email);
+      if (item) await AsyncStorage.setItem("userToken", "" + item.id);
       this.props.navigation.navigate("AuthLoading");
     }
   };
@@ -51,7 +51,7 @@ class SignIn extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    logins: state.main.logins
+    users: state.main.users
   };
 };
 

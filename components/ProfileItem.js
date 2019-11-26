@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import { withNavigation } from "react-navigation";
 
 const ProfileItem = props => {
@@ -8,7 +8,7 @@ const ProfileItem = props => {
       onPress={() => props.navigation.navigate("PROFILE", { id: props.id })}
       style={props.style}
     >
-      go to profile
+      {props.profile.player_tag} - elo: {props.profile.elo}
     </Text>
   );
 };

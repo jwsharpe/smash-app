@@ -13,8 +13,7 @@ class AuthLoading extends React.Component {
   _bootstrapAsync = async () => {
     const userToken = await AsyncStorage.getItem("userToken");
 
-    this.props.setCurrentUser(this.props.logins[+userToken]);
-
+    this.props.setCurrentUser(this.props.users[+userToken]);
     if (userToken) this.props.navigation.navigate("App");
     else {
       this.props.navigation.navigate("Auth");
@@ -33,7 +32,7 @@ class AuthLoading extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  logins: state.main.logins
+  users: state.main.users
 });
 
 const mapDispatchToProps = { setCurrentUser };

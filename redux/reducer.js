@@ -1,43 +1,19 @@
 import { combineReducers } from "redux";
 
-const data = [
-  {
-    title: "Public"
-  },
-  {
-    title: "Friends"
-  },
-  {
-    title: "Me"
-  }
-];
-
-const logins = [
-  {
-    id: "0",
-    email: "jeff"
-  },
-  {
-    id: "1",
-    email: "john"
-  },
-  {
-    id: "2",
-    email: "jacob"
-  }
-];
-
 const INITIAL_STATE = {
-  currentUser: null,
-  data: data,
-  logins: logins,
-  navigation: {}
+  currentUser: {},
+  users: [],
+  matches: []
 };
 
 const reducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case "SET_CURRENT_USER":
       return { ...state, currentUser: payload };
+    case "SET_USERS":
+      return { ...state, users: payload };
+    case "SET_MATCHES":
+      return { ...state, matches: payload };
     default:
       return state;
   }
