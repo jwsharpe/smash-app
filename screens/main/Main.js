@@ -1,22 +1,18 @@
 import React, { Component } from "react";
-import { Button, FlatList, Text, Alert, TouchableOpacity } from "react-native";
+import { FlatList, View } from "react-native";
 import { connect } from "react-redux";
 import { withNavigation } from "react-navigation";
-import styles from "../../assets/styles";
 import MatchItem from "../../components/MatchItem";
 
 class ThreadContainer extends Component {
   render() {
     return (
-      <>
-        <FlatList
-          data={this._matchesFilter(this.props.id)}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <MatchItem id={item.id} profile={item} style={styles.item} />
-          )}
-        />
-      </>
+      <FlatList
+        data={this._matchesFilter(this.props.id)}
+        keyExtractor={item => "" + item.id}
+        renderItem={({ item }) => <MatchItem id={item.id} profile={item} />}
+        ListFooterComponent={<View style={{ height: 84 }}></View>}
+      />
     );
   }
 

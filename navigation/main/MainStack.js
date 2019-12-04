@@ -1,15 +1,16 @@
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import HomeTab from "./HomeTab";
 import SearchScreen from "../../screens/main/Search";
 import ProfileScreen from "../../screens/main/Profile";
+import MatchScreen from "../../screens/main/Match";
 import React from "react";
-import { connect } from "react-redux";
-import { setMatches, setUsers } from "../../redux/actions";
+
 const MainStack = createStackNavigator(
   {
     HOME: HomeTab,
     SEARCH: SearchScreen,
-    PROFILE: ProfileScreen
+    PROFILE: ProfileScreen,
+    MATCH: MatchScreen
   },
 
   {
@@ -24,7 +25,8 @@ const MainStack = createStackNavigator(
       headerTitleStyle: {
         fontSize: 14,
         color: "white",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        fontFamily: "sans-serif-light"
       }
     }
   }
@@ -33,21 +35,9 @@ const MainStack = createStackNavigator(
 class mainStack extends React.Component {
   static router = MainStack.router;
 
-  componentDidMount() {
-    fetch("http://10.0.2.2:3000/matches", null)
-      .then(response => response.json())
-      .then(this.props.setMatches);
-
-    fetch("http://10.0.2.2:3000/users", null)
-      .then(response => response.json())
-      .then(this.props.setUsers);
-  }
   render() {
     return <MainStack navigation={this.props.navigation} />;
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({});
-const mapDispatchToProps = { setMatches, setUsers };
-
-export default connect(mapStateToProps, mapDispatchToProps)(mainStack);
+export default mainStack;

@@ -2,15 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52ff98a8-9808-4593-b99a-e3bfd902040c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MatchItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MatchItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ProfileItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ProfileItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/app/AppSwitch.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/app/AppSwitch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/auth/AuthStackNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/auth/AuthStackNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/challenge/ChallengeStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/challenge/ChallengeStack.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/main/HomeTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/main/HomeTab.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/main/MainStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/main/MainStack.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/redux/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/redux/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/redux/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/redux/reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/auth/AuthLoading.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/auth/AuthLoading.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/auth/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/auth/SignIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/main/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/main/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/main/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/main/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/main/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/main/Search.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -35,6 +40,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -56,7 +62,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -92,21 +97,21 @@
   <component name="ToolWindowManager">
     <frame x="1777" y="86" width="1400" height="860" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32994923" />
-      <window_info id="Structure" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="Resources Explorer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="TODO" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32994923" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="Resources Explorer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="TODO" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Palette&#9;" order="2" />
     </layout>
   </component>
 </project>

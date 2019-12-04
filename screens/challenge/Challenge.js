@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import styles from "../../assets/styles";
 
 const _fetchWinner = (user1Score, user2Score, user1Id, user2Id) => {
   const mainBody = {
@@ -31,14 +33,33 @@ const Challenge = props => {
       {id === "challenger" ? (
         <>
           <Text>Choose a Winner</Text>
-          <Button
+          <TouchableOpacity
             onPress={() => _fetchWinner(1, 0, user_1_id, user_2_id)}
-            title={user1.player_tag}
-          />
-          <Button
+            style={{ ...styles.matchProfileItem, alignItems: "center" }}
+          >
+            <Image
+              style={{ width: 80, height: 80, margin: 8, borderRadius: 50 }}
+              source={{ uri: user1.avatar }}
+            />
+            <Text style={styles.matchProfileTextWinner}>
+              {user1.player_tag}
+            </Text>
+            <Text style={styles.matchProfileScoreWinner}>{user1.elo}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
             onPress={() => _fetchWinner(0, 1, user_1_id, user_2_id)}
-            title={user2.player_tag}
-          />
+            style={{ ...styles.matchProfileItem, alignItems: "center" }}
+          >
+            <Image
+              style={{ width: 80, height: 80, margin: 8, borderRadius: 50 }}
+              source={{ uri: user2.avatar }}
+            />
+            <Text style={styles.matchProfileTextWinner}>
+              {user2.player_tag}
+            </Text>
+            <Text style={styles.matchProfileScoreWinner}>{user2.elo}</Text>
+          </TouchableOpacity>
         </>
       ) : (
         <Text>waiting on challenger</Text>

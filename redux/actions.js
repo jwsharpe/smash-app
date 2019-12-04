@@ -3,10 +3,13 @@ export const setCurrentUser = user => ({
   payload: user
 });
 
-export const setUsers = users => ({
-  type: "SET_USERS",
-  payload: users
-});
+export const setUsers = users => {
+  users.sort((e, f) => e.id - f.id);
+  return {
+    type: "SET_USERS",
+    payload: users
+  };
+};
 
 export const setMatches = matches => ({
   type: "SET_MATCHES",

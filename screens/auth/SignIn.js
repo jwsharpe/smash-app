@@ -2,38 +2,37 @@ import React from "react";
 import { View, Button, AsyncStorage } from "react-native";
 import t from "tcomb-form-native";
 import { connect } from "react-redux";
+import styles from "../../assets/styles";
 
 const Form = t.form.Form;
 
+t.form.Form.stylesheet.textbox.normal.color = "#FFF";
+
 const User = t.struct({
-  email: t.String,
-  username: t.maybe(t.String),
-  password: t.maybe(t.String)
+  email: t.String
 });
 
 const options = {
+  auto: "placeholders",
   fields: {
     email: {
-      error:
-        "Without an email address how are you going to reset your password when you forget it?"
-    },
-    password: {
-      error:
-        "Choose something you use on a dozen other sites or something you won't remember"
+      error: "Enter a valid email"
     }
   }
 };
 
 class SignIn extends React.Component {
   static navigationOptions = {
-    title: "Please sign in"
+    headerStyle: { elevation: 0, backgroundColor: "#607D8B" }
   };
 
   render() {
     return (
-      <View>
-        <Button title="Sign in!" onPress={this._signInAsync} />
-        <Form options={options} ref={c => (this._form = c)} type={User} />
+      <View style={styles.splash}>
+        <View style={styles.signInForm}>
+          <Form options={options} ref={c => (this._form = c)} type={User} />
+          <Button title="sign in" onPress={this._signInAsync} />
+        </View>
       </View>
     );
   }

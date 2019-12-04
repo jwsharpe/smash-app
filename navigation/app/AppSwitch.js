@@ -48,11 +48,13 @@ class globalWrapperMainStack extends React.Component {
   };
 
   _showModal = data => {
-    const { user_1_id, user_2_id } = data.message;
-    const challenger = this.props.users[user_1_id];
+    const { user_1_id } = data.message;
+    const challenger = this.props.users.filter(
+      user => user.id === user_1_id
+    )[0];
     Alert.alert(
-      challenger.player_tag,
-      "challenges you",
+      "Incoming Challenge!",
+      challenger.player_tag + " challenges you!",
       [
         {
           text: "Cancel",
