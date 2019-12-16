@@ -18,7 +18,7 @@ export class Profile extends Component {
             source={{ uri: user.avatar }}
           />
           <Text style={styles.matchProfileTextWinner}>{user.player_tag}</Text>
-          <Text style={styles.matchProfileScoreWinner}>{user.elo}</Text>
+          <Text style={styles.matchProfileScoreWinner}>elo: {user.elo}</Text>
         </View>
         <Button
           title="CHALLENGE"

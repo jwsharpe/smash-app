@@ -20,6 +20,16 @@ class Splash extends React.Component {
             }}
           /> */}
           <Text style={styles.splashText}>smashlo</Text>
+          <Text
+            style={{
+              ...styles.splashText,
+              fontSize: 14,
+              fontWeight: "normal",
+              color: "#ffffffdd"
+            }}
+          >
+            a rating system for smash players
+          </Text>
         </View>
         <View style={styles.splashActions}>
           <TouchableOpacity

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "../../assets/styles";
-import { View, FlatList } from "react-native";
+import { View, FlatList, Text } from "react-native";
 import { connect } from "react-redux";
 import ProfileItem from "../../components/ProfileItem";
 import { TextInput } from "react-native-gesture-handler";
@@ -15,9 +15,9 @@ export class Search extends Component {
   };
 
   _filterUsers = () => {
-    const users = [...this.props.users].filter(
-      user => this.props.currentUser.id !== user.id
-    );
+    const users = [...this.props.users]
+      .filter(user => this.props.currentUser.id !== user.id)
+      .sort((u1, u2) => u2.elo - u1.elo);
     return [...users].filter(user => {
       return user.player_tag
         .toLowerCase()
@@ -42,6 +42,7 @@ export class Search extends Component {
           renderItem={({ item }) => (
             <ProfileItem id={item.id} profile={item} style={styles.item} />
           )}
+          ListFooterComponent={<View style={{ height: 70 }}></View>}
         />
       </View>
     );

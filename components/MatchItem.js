@@ -5,10 +5,23 @@ import { connect } from "react-redux";
 import styles from "../assets/styles";
 import { TouchableNativeFeedback } from "react-native-gesture-handler";
 
+function dateParse(dateStr) {
+  const year = dateStr.slice(0, 4);
+  const month = dateStr.slice(5, 7);
+  const day = dateStr.slice(8, 10);
+  const hour = dateStr.slice(11, 13);
+  const minute = dateStr.slice(17, 19);
+  return { year, month, day, hour, minute };
+}
+
 const MatchItem = props => {
-  const user1 = props.users[props.profile.user_1_id];
-  const user2 = props.users[props.profile.user_2_id];
+  const { user_1_id, user_2_id } = props.profile;
+  const user1 = props.users.filter(user => user_1_id === user.id)[0];
+  const user2 = props.users.filter(user => user_2_id === user.id)[0];
   const winnerLeft = props.profile.user_1_score > props.profile.user_2_score;
+
+  const date = dateParse(props.profile.created_at);
+
   return (
     <TouchableNativeFeedback
       style={styles.item}
@@ -74,6 +87,11 @@ const MatchItem = props => {
           source={{ uri: user2.avatar }}
         />
       </View>
+      <Text style={styles.date}>
+        {date.year}-{date.month}-{date.day}
+        {"  "}
+        {date.hour}:{date.minute}
+      </Text>
     </TouchableNativeFeedback>
   );
 };

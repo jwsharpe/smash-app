@@ -9,7 +9,8 @@ const Form = t.form.Form;
 t.form.Form.stylesheet.textbox.normal.color = "#FFF";
 
 const User = t.struct({
-  email: t.String
+  email: t.String,
+  password: t.String
 });
 
 const options = {
@@ -17,6 +18,11 @@ const options = {
   fields: {
     email: {
       error: "Enter a valid email"
+    },
+    password: {
+      error: "Please input a password",
+      password: true,
+      secureTextEntry: true
     }
   }
 };

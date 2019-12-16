@@ -63,6 +63,14 @@ export const styles = StyleSheet.create({
     textAlignVertical: "center"
   },
 
+  date: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    color: "#757575",
+    fontSize: 10,
+    marginRight: 2
+  },
   commentTitleText: {
     fontSize: 12,
     color: "#757575",
@@ -175,10 +183,17 @@ export const styles = StyleSheet.create({
   },
 
   comments: {
-    flex: 2
+    flex: 2,
+    paddingBottom: 36
   },
 
   commentMessage: {
+    position: "absolute",
+    bottom: 0,
+    height: 36,
+    backgroundColor: "white",
+    zIndex: 2,
+    width: width,
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
@@ -276,6 +291,42 @@ export const styles = StyleSheet.create({
 
   profileContainer: {
     flex: 1
+  },
+
+  matchProfileContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginTop: 8,
+    marginBottom: 8
+  },
+  challengeText: {
+    fontSize: 22,
+    color: "white",
+    fontWeight: "bold"
+  },
+  matchChallengeContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    flexDirection: "row"
+  },
+  challengeProfileItem: {
+    alignItems: "center",
+    borderColor: "#607D8B",
+    backgroundColor: "#fff",
+    padding: 8,
+    margin: 16,
+    minWidth: 150,
+    borderRadius: 4,
+    borderBottomWidth: 2
+  },
+  challengedText: {
+    color: "white",
+    fontSize: 22,
+    textAlignVertical: "center",
+    textAlign: "center"
   }
 });
+
 export default styles;

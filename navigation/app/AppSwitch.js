@@ -23,6 +23,7 @@ class globalWrapperMainStack extends React.Component {
     return (
       <>
         <ActionCable
+          key={this.props.currentUser.id}
           channel={{
             channel: "GlobalRoomChannel",
             id: this.props.currentUser.id

@@ -41,6 +41,7 @@ class Home extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
+      headerTitle: "SmashLO - " + navigation.getParam("cElo"),
       headerRight: (
         <Text
           style={{
@@ -58,24 +59,30 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://10.0.2.2:3000/matches", null)
-      .then(response => response.json())
-      .then(this.props.setMatches);
+    this.interval = setInterval(e => {
+      fetch("http://10.0.2.2:3000/matches", null)
+        .then(response => response.json())
+        .then(this.props.setMatches);
 
-    fetch("http://10.0.2.2:3000/users", null)
-      .then(response => response.json())
-      .then(this.props.setUsers);
+      fetch("http://10.0.2.2:3000/users", null)
+        .then(response => response.json())
+        .then(this.props.setUsers);
+    }, 5000);
 
     AsyncStorage.getItem("userToken").then(userToken => {
       const cUser = this.props.users.filter(user => +userToken === user.id)[0];
       this.props.setCurrentUser(cUser);
 
       this.props.navigation.setParams({
+        cElo: cUser.elo,
         cUser: "Welcome " + cUser.player_tag + "!"
       });
     });
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   render() {
     return (
       <View style={styles.mainContainer}>

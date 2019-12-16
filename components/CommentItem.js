@@ -1,16 +1,27 @@
 import React from "react";
-import { View, Text, Button, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { Icon } from "react-native-elements";
+
+function dateParse(dateStr) {
+  const year = dateStr.slice(0, 4);
+  const month = dateStr.slice(5, 7);
+  const day = dateStr.slice(8, 10);
+  const hour = dateStr.slice(11, 13);
+  const minute = dateStr.slice(17, 19);
+  return { year, month, day, hour, minute };
+}
+
 const CommentItem = props => {
   const id = props.item.user_id;
   const user = props.users.filter(user => user.id == +id)[0];
-
+  const date = dateParse(props.item.created_at);
   return (
-    <View style={styles.comment}>
+    <View
+      style={{ ...styles.comment, borderBottomWidth: props.isLast ? 0 : 1 }}
+    >
       <View style={styles.commentHeader}>
         <View style={styles.commentProfile}>
           <Image
@@ -34,6 +45,11 @@ const CommentItem = props => {
         </View>
       </View>
       <Text style={{ marginLeft: 4 }}>{props.item.content}</Text>
+      <Text style={styles.date}>
+        {date.year}-{date.month}-{date.day}
+        {"  "}
+        {date.hour}:{date.minute}
+      </Text>
     </View>
   );
 };

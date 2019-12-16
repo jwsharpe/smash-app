@@ -1,5 +1,13 @@
 import React from "react";
-import { Text, View, FlatList, TextInput, Button } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  TextInput,
+  Keyboard,
+  DeviceEventEmitter,
+  Dimensions
+} from "react-native";
 import styles from "../assets/styles";
 import Comment from "./CommentItem";
 import { Icon } from "react-native-elements";
@@ -9,7 +17,8 @@ class MatchComments extends React.Component {
   state = {
     comments: [],
     value: "",
-    claps: 0
+    claps: 0,
+    messageBottom: 0
   };
 
   _onChangeText = text => {
@@ -17,8 +26,10 @@ class MatchComments extends React.Component {
   };
 
   _onSubmit = () => {
-    this._addComment(this.state.value);
-    this.setState({ value: "" });
+    if (this.state.value.length) {
+      this._addComment(this.state.value);
+      this.setState({ value: "" });
+    }
   };
 
   _addComment = message => {
@@ -41,6 +52,14 @@ class MatchComments extends React.Component {
       .then(match => this._setComments(match.messages));
   };
 
+  _keyboardDidShow = e => {
+    this.setState({ messageBottom: e.endCoordinates.height });
+  };
+
+  _keyboardDidHide = () => {
+    this.setState({ messageBottom: 0 });
+  };
+
   _setComments = messages => {
     this.setState({
       comments: messages
@@ -61,29 +80,64 @@ class MatchComments extends React.Component {
   componentDidMount() {
     const id = this.props.id;
 
-    fetch(`http://10.0.2.2:3000/matches/${id}`)
-      .then(e => e.json())
-      .then(match => {
-        this._setComments(match.messages);
-        this._setClaps(match.claps);
-      });
+    this.keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      this._keyboardDidShow
+    );
+    this.keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      this._keyboardDidHide
+    );
+
+    this.interval = setInterval(e => {
+      fetch(`http://10.0.2.2:3000/matches/${id}`)
+        .then(e => e.json())
+        .then(match => {
+          this._setComments(match.messages);
+          this._setClaps(match.claps);
+        });
+    }, 500);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.comments.length !== this.state.comments.length) {
+      setTimeout(e => {
+        if (this.flatList) this.flatList.scrollToEnd();
+      }, 100);
+    }
+  }
+
+  componentWillUnmount() {
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
+    clearInterval(this.interval);
   }
 
   render() {
     return (
       <View style={styles.comments}>
         <Text style={styles.commentTitleText}>Comments</Text>
+
         <FlatList
           data={this.state.comments}
+          ref={ref => (this.flatList = ref)}
           renderItem={comment => (
-            <Comment setComments={this._setComments} {...comment} />
+            <Comment
+              isLast={this.state.comments.length - 1 === comment.index}
+              setComments={this._setComments}
+              {...comment}
+            />
           )}
           keyExtractor={comment => "" + comment.id}
         />
-        <View style={styles.commentMessage}>
+
+        <View
+          style={{ ...styles.commentMessage, bottom: this.state.messageBottom }}
+        >
           <TextInput
             style={styles.commentMessageText}
             onChangeText={this._onChangeText}
+            onSubmitEditing={this._onSubmit}
             value={this.state.value}
             placeholder={"Message"}
           />
@@ -92,7 +146,7 @@ class MatchComments extends React.Component {
             name="send"
             type="material"
             size={16}
-            color="#CFD8DC"
+            color={this.state.value.length ? "#448AFF" : "#CFD8DC"}
           />
         </View>
       </View>

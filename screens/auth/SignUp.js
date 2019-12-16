@@ -13,6 +13,7 @@ t.form.Form.stylesheet.pickerContainer.normal.color = "#ffffff";
 const User = t.struct({
   email: t.String,
   player_tag: t.String,
+  password: t.String,
   avatar: Characters
 });
 
@@ -25,6 +26,11 @@ const options = {
     email: {
       error:
         "Without an email address how are you going to reset your password when you forget it?"
+    },
+    password: {
+      error: "Please input a password",
+      password: true,
+      secureTextEntry: true
     },
     avatar: {
       nullOption: { value: "", text: "Choose your main" }
