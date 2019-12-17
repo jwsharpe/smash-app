@@ -2,6 +2,8 @@
 
 SmashLO is a react-native match tracker and elo tracker for Super Smash Brothers Melee.
 
+![smashlo demo](https://i.imgur.com/OUMWqPv.png)
+
 Demo can be found [here](https://drive.google.com/open?id=1iuReZPuCLWnnj28lhjjj_CVMUGf--QXU)!
 
 There still a lot to do!
